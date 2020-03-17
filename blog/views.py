@@ -18,7 +18,11 @@ def index(request):
     return render(request,'index.html',context)
 
 def blog(request):
-    return render(request,'blog.html')
+    latest = Post.objects.order_by('-timestamp')[0:3]
+    context={
+        'latest':latest
+    }
+    return render(request,'blog.html',context)
 
 def post(request):
     return render(request,'post.html')
